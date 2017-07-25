@@ -12,7 +12,7 @@ class Product(models.Model):
     image = models.ImageField()
 
 class Comment(models.Model):
-
+    """This class is written for user's comments. The comments have to include an image """
     vendor = models.ForeignKey('Product')
     comment = models.TextField()
     image = models.ImageField(blank=True, null=True)
