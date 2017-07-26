@@ -9,6 +9,6 @@ class AnasayfaView(generic.ListView):
 class SssView(generic.TemplateView):
     template_name = "urun/sss.html"
 
-class ProductDetail(generic.DetailView):
+class ProductDetailView(generic.DetailView):
     def get_queryset(self):
         return Product.objects.all()
