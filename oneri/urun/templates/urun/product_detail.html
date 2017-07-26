@@ -7,7 +7,18 @@
 <body>
 <h1>Ürün Detayı</h1>
 
-{{ object.name }}
+<h1>{{ object.name }}</h1>
+{{ object.description }}<br>
+{{ object.performance }}<br>
+{{ object.price }} <br>
+------<br>
+{% for comment in object.comments.all %}
+<p>
+{{comment.content}} <br>
+{{comment.like}} <br>
+{{comment.dislike}} <br>
+</p>
+{% endfor %}
 
 
 </body>

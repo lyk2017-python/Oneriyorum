@@ -1,7 +1,7 @@
 from django.views import generic
 from django.views.generic import ListView
 
-from urun.models import Product
+from urun.models import Product, Vendor, Comment
 
 
 class AnasayfaView(generic.ListView):
@@ -12,3 +12,6 @@ class SssView(generic.TemplateView):
 
 class ProductDetailView(generic.DetailView):
     model = Product
+
+
+

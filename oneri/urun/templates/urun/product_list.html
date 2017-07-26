@@ -7,10 +7,9 @@
 <body>
 <h1>Öneri Listesi</h1>
 
-{% for i in object_list %}
+{% for product in object_list %}
 
-    {{ i.name }}
-    <a href="{% url "product" pk=i.pk %}">{{i.name}}</a>
+    <a href="{% url "product" pk=product.pk %}">{{product.name}}</a>
 </br>
 
 
