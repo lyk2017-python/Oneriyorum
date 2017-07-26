@@ -9,9 +9,12 @@
 
 {% for i in object_list %}
 
-    {{ i.name }} </br>
+    {{ i.name }}
+    <a href="{% url "product" pk=i.pk %}">{{i.name}}</a>
+</br>
 
 
 {% endfor %}
 </body>
 </html>
+
