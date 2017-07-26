@@ -8,16 +8,18 @@ class Vendor(models.Model):
         return "{name}".format(name=self.name)
 
 class Product(models.Model):
+    """This class is written for user's comments. The comments have to include an image"""
     vendor = models.ManyToManyField("Vendor")
     name = models.CharField(max_length=200)
-    image = models.ImageField(default=None, null=True)
-
-class Comment(models.Model):
-    """This class is written for user's comments. The comments have to include an image"""
-    vendor = models.ForeignKey('Product')
     comment = models.TextField()
     image = models.ImageField(blank=True, null=True)
     price = models.SmallIntegerField()
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
 
+class Comment(models.Model):
+
+    vendor = models.ForeignKey('Product')
+    like = models.IntegerField()
+    dislike = models.IntegerField()
+    other_comment = models.TextField()
