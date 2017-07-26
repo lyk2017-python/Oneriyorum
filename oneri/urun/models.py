@@ -24,7 +24,7 @@ class Comment(models.Model):
     """
     This class is written for user's comments. The comments have to include an image
     """
-    product = models.ForeignKey('Product', related_name="comments")
+    product = models.ForeignKey('Product')
     content = models.TextField()
     like = models.IntegerField()
     dislike = models.IntegerField()
