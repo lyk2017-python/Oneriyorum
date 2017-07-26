@@ -5,7 +5,7 @@ class Vendor(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
-        return "#{id} {name}".format(id=self.id, name=self.name)
+        return "{name}".format(name=self.name)
 
 class Product(models.Model):
     vendor = models.ManyToManyField("Vendor")
