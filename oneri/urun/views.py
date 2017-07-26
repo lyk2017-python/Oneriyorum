@@ -1,3 +1,3 @@
 from django.shortcuts import render
-
-# Create your views here.
+from urun.models import *
+from django.views import generic
