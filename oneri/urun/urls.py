@@ -3,6 +3,6 @@ from oneri.views import ProductDetailView, AnasayfaView, SssView
 
 urlpatterns=[
     url(r"^$", AnasayfaView.as_view(), name="Anasayfa"),
-    url(r"^product/(?P<pk>\d+)$", ProductDetailView.as_view()),
+    url(r"^product/(?P<pk>\d+)$", ProductDetailView.as_view(), name="product"),
     url(r"sss$", SssView.as_view())
 ]

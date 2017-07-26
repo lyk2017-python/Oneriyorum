@@ -1,4 +1,5 @@
 from django.views import generic
+from django.views.generic import ListView
 
 from urun.models import Product
 
@@ -10,5 +11,4 @@ class SssView(generic.TemplateView):
     template_name = "urun/sss.html"
 
 class ProductDetailView(generic.DetailView):
-    def get_queryset(self):
-        return Product.objects.all()
+    model = Product

@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from urun import urls as urun_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include("urun.urls")),
+    url(r'^', include(urun_urls)),
 
 ]
