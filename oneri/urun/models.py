@@ -10,7 +10,7 @@ class Vendor(models.Model):
 class Product(models.Model):
     vendor = models.ManyToManyField("Vendor")
     name = models.CharField(max_length=200)
-    image = models.ImageField()
+    image = models.ImageField(default=None, null=True)
 
 class Comment(models.Model):
     """This class is written for user's comments. The comments have to include an image"""
