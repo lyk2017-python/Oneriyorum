@@ -1,6 +1,7 @@
 from django.db import models
 
 class Vendor(models.Model):
+    """This class is written for Product's vendor."""
     name = models.CharField(max_length=200)
 
     def __str__(self):
