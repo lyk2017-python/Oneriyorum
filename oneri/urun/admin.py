@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import Product, Vendor, Comment
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin): #model defined
     list_display = ["name", "price", "performance", "design"]
 
 
