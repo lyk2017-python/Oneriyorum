@@ -20,6 +20,9 @@ class Product(models.Model):
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
 
+    def __str__(self):
+        return "{name}".format(name=self.name)
+
 class Comment(models.Model):
     """
     This class is written for user's comments. The comments have to include an image
