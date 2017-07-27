@@ -7,16 +7,21 @@
 {% block content %}
 
     <h1>{{ object.name }}</h1>
-    {{ object.description }}<br>
-    {{ object.performance }}<br>
-    {{ object.price }} <br>
+Tanım: {{ object.description }}<br>
+price :{{ object.price }}<br>
+performance :{{ object.performance }}<br>
+design :{{ object.design }}<br>
+<button>Like</button> Like: <br>
+<button>Dislike</button>Dislike: <br>
     <br>
     <hr>
+<h2>Öneri için yazılan yorumlar aşağıdadır.</h2>
+<hr>
     {% for comment in object.comments.all %}
         <p>
             {{comment.content}} <br>
-            {{comment.like}} <br>
-            {{comment.dislike}} <br>
+            <button>Like</button> {{comment.like}} <br>
+            <button>Dislike</button> {{comment.dislike}} <br>
         </p>
         <hr>
     {% endfor %}

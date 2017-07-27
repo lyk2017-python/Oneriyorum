@@ -21,6 +21,8 @@ class Product(models.Model):
     price = models.SmallIntegerField()
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
+    #like = models.PositiveIntegerField(default=0)
+    #dislike = models.PositiveIntegerField(default=0)
 
 
     # This function return product's name.

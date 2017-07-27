@@ -16,6 +16,11 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductComment]
 
 
+# Görüntülenecek olan alanları list_display ile düzenledik.
+class CommendAdmin(admin.ModelAdmin):
+    list_display = ["product", "content", "like", "dislike"]
+
+
 #Derste yapılan diğerinden farkı yok sanırım
 #@admin.register(Vendor)
 #class VendorAdmin(admin.ModelAdmin):
@@ -24,5 +29,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Vendor)
-admin.site.register(Comment)
+admin.site.register(Comment, CommendAdmin)
 
