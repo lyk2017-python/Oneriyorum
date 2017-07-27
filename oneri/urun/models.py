@@ -22,7 +22,8 @@ class Product(models.Model):
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
 
-        #This function return product's name.
+
+    #This function return product's name.
     def __str__(self):
         return "{name}".format(name=self.name)
 
