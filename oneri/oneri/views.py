@@ -12,6 +12,7 @@ class SssView(generic.TemplateView):
 
 class ProductDetailView(generic.DetailView):
     model = Product
+    template_name = "urun/product_detail2.html"
 
 
 
