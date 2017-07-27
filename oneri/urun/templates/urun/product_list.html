@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Oneriyorum</title>
-</head>
-<body>
-<h1>Öneri Listesi</h1>
+{% extends "urun/base.html" %}
 
-{% for product in object_list %}
+{% block title %}Öneri Listesi{% endblock %}
 
-    <a href="{% url "product" pk=product.pk %}">{{product.name}}</a>
+{% block content %}
+
+    <h1>Öneri Listesi</h1>
+
+    {% for product in object_list %}
+
+        <a href="{% url "product" pk=product.pk %}">{{product.name}}</a>
 </br>
 
+    {% endfor %}
 
-{% endfor %}
-</body>
-</html>
-
+{% endblock %}
