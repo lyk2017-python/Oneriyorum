@@ -6,6 +6,7 @@ class Vendor(models.Model):
     """
     name = models.CharField(max_length=200)
 
+    # This function return vendor's name.
     def __str__(self):
         return "{name}".format(name=self.name)
 
@@ -20,6 +21,7 @@ class Product(models.Model):
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
 
+    #    #This function return product's name.
     def __str__(self):
         return "{name}".format(name=self.name)
 
@@ -31,3 +33,7 @@ class Comment(models.Model):
     content = models.TextField()
     like = models.IntegerField()
     dislike = models.IntegerField()
+
+
+    def __str__(self):
+        return "{name}".format(name=self.product)
