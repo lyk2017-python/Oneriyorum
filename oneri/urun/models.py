@@ -11,6 +11,7 @@ class Vendor(models.Model):
         return "{name}".format(name=self.name)
 
 
+
 class Product(models.Model):
     """This class is written for user's comments. The comments have to include an image"""
     vendor = models.ManyToManyField("Vendor")

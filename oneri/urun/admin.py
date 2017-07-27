@@ -9,6 +9,7 @@ class ProductComment(admin.StackedInline):
 
 # Product modelinin düzenlemeleri tanımlandı
 class ProductAdmin(admin.ModelAdmin):
+
     list_display = ["name", "price", "performance", "design"]
     search_fields = ["name", "price"]
     list_filter = ["name", "price", "performance", "design"]
