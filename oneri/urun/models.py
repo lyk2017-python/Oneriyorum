@@ -40,6 +40,7 @@ class Comment(models.Model):
     content = models.TextField()
     like = models.IntegerField()
     dislike = models.IntegerField()
+    created_date = models.DateTimeField(default=timezone.now())
 
 
     def __str__(self):
