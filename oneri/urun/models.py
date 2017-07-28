@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Vendor(models.Model):
     """
@@ -21,6 +22,7 @@ class Product(models.Model):
     price = models.SmallIntegerField()
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
+    created_date = models.DateTimeField(default=timezone.now())
     #like = models.PositiveIntegerField(default=0)
     #dislike = models.PositiveIntegerField(default=0)
 
@@ -30,6 +32,7 @@ class Product(models.Model):
         return "{name}".format(name=self.name)
 
 class Comment(models.Model):
+
     """
     This class is written for user's comments. The comments have to include an image
     """
