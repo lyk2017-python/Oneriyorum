@@ -1,0 +1,23 @@
+{% extends "urun/base.html" %}
+
+{% block title %}Öneri güncelleme sayfası{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+
+</form>
+
+
+{% endblock %}
+
+
+
+
+
+</body>
+</html>
