@@ -6,5 +6,5 @@ urlpatterns=[
     url(r"^product/(?P<pk>\d+)$", ProductDetailView.as_view(), name="product"),
     url(r"sss$", SssView.as_view()),
     url(r'product/add/$', ProductCreate.as_view(), name='product-add'),
-    url(r'comment/add/$', CommentCreate.as_view(), name='comment-add'),
+    url(r'comment/add/', CommentCreate.as_view(), name='comment-add'),
 ]
