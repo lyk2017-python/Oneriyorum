@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+from urun.forms import CommentForm
 from urun.models import Product, Vendor, Comment
 
 class ProductCreate(CreateView):
@@ -19,8 +20,16 @@ class ProductDelete(DeleteView):
     success_url = reverse_lazy('Anasayfa')
 
 class CommentCreate(CreateView):
-    model = Comment
-    fields = ['product', 'content']
+    form_class = CommentForm
+    template_name = "urun/comment_form.html"
+    def get_form_kwargs(self):
+        form_veri = super().get_form_kwargs()
+        if self.request.method in ["POST", "PUT"]:
+            kullanici_veri = form_veri["data"].copy()
+            kullanici_veri["product"] = self.kwargs["pk"]
+            form_veri["data"] = kullanici_veri
+        return form_veri
+
 
 class AnasayfaView(generic.ListView):
     model = Product
