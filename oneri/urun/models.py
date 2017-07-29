@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 class Vendor(models.Model):
     """
@@ -30,6 +31,10 @@ class Product(models.Model):
     # This function return product's name.
     def __str__(self):
         return "{name}".format(name=self.name)
+
+    def get_absolute_url(self):
+        return reverse('product', kwargs={'pk': self.pk})
+
 
 class Comment(models.Model):
 
