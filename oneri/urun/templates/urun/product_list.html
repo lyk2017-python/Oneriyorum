@@ -10,7 +10,7 @@
 
     {% for product in object_list %}
 
-        <a href="{% url "product" pk=product.pk %}">{{product.name}}</a>
+        <a href="{% url "product-detail" pk=product.pk %}">{{product.name}}</a>
         {{product.created_date | date:"d-m-Y" }}
 </br>
 
