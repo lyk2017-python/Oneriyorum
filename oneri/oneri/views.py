@@ -9,7 +9,9 @@ class ProductCreate(CreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
 
-
+class CommentCreate(CreateView):
+    model = Comment
+    fields = ['product', 'content']
 
 class AnasayfaView(generic.ListView):
     model = Product

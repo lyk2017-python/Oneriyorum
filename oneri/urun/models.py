@@ -43,10 +43,13 @@ class Comment(models.Model):
     """
     product = models.ForeignKey('Product', related_name="comments")
     content = models.TextField()
-    like = models.IntegerField()
-    dislike = models.IntegerField()
+    like = models.IntegerField(default=0)
+    dislike = models.IntegerField(default=0)
     created_date = models.DateTimeField(default=timezone.now())
 
 
     def __str__(self):
         return "{name}".format(name=self.product)
+
+    def get_absolute_url(self):
+        return reverse('product', kwargs={'pk': self.product.pk})
