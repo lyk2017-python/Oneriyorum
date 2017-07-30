@@ -4,20 +4,20 @@
 
 {% block content %}
 
-    <h1>{{ object.name }}</h1>
+    <h3>{{ object.name }}</h3>
 <img src="{{object.image.url}}" alt="" width="100"><br>
 Tanım: {{ object.description }}<br>
-price :{{ object.price }}<br>
-performance :{{ object.performance }}<br>
+price :{{ object.price }}
+performance :{{ object.performance }}
 design :{{ object.design }}<br>
-<button>Like</button> Like: <br>
+<button>Like</button> Like:
 <button>Dislike</button>Dislike: <br>
     <br>
 <a href="{% url "comment-add" pk=object.id %}">Öneriye yorum ekle</a><br>
-<a href="{% url "product-update" pk=object.id %}">Öneri güncelle</a>
+<a href="{% url "product-update" pk=object.id %}">Öneri güncelle</a><br>
 <a href="{% url "product-delete"  object.id %}">Sil</a><br>
     <hr>
-<h2>Öneri için yazılan yorumlar aşağıdadır.</h2>
+<h4>Öneri için yazılan yorumlar aşağıdadır.</h4>
 <hr>
     {% for comment in object.comments.all %}
         <p>
