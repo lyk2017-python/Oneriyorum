@@ -18,15 +18,23 @@
 <body>
     <div id="sidebar">
         {% block sidebar %}
-        <ul>
-            <pre><a href="/">Anasafya</a>   <a href="/product/add/">Öneri ekle</a>  <a href="/">Öneri Listele</a>   <a href="/contact/">Contact</a> </pre>
 
-        </ul>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">Öneriyorum</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Anasayfa</a></li>
+              <li><a href="/product/add/">Öneri Ekle</a></li>
+              <li><a href="/contact/">İletişim</a></li>
+            </ul>
+          </div>
+        </nav>
         {% endblock %}
     </div>
 
     <div id="content">
-        silinecek
         {% block content %}{% endblock %}
     </div>
 </body>

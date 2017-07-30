@@ -10,12 +10,12 @@ Tanım: {{ object.description }}<br>
 price :{{ object.price }}
 performance :{{ object.performance }}
 design :{{ object.design }}<br>
-<button>Like</button>{{ object.like }}
-<button>Dislike</button>{{ object.dislike }}<br>
-    <br>
-<a href="{% url "comment-add" pk=object.id %}">Öneriye yorum ekle</a><br>
-<a href="{% url "product-update" pk=object.id %}">Öneri güncelle</a><br>
-<a href="{% url "product-delete"  object.id %}">Sil</a><br>
+<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
+<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
+    <br><br>
+<a href="{% url "comment-add"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Yorum Ekle</a>
+<a href="{% url "product-update"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Öneriyi Güncelle</a>
+<a href="{% url "product-delete"  object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Sil</a>
     <hr>
 <h4>Öneri için yazılan yorumlar aşağıdadır.</h4>
 <hr>
@@ -23,8 +23,8 @@ design :{{ object.design }}<br>
         <p>
             {{comment.content}} <br>
             {{comment.created_date|date:"m-d-Y"}} <br>
-            <button>Like</button> {{comment.like}}
-            <button>Dislike</button> {{comment.dislike}} <br>
+            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
+            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
         </p>
         <hr>
     {% endfor %}
