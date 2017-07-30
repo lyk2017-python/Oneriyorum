@@ -10,8 +10,8 @@ Tanım: {{ object.description }}<br>
 price :{{ object.price }}
 performance :{{ object.performance }}
 design :{{ object.design }}<br>
-<button>Like</button> Like:
-<button>Dislike</button>Dislike: <br>
+<button>Like</button>{{ object.like }}
+<button>Dislike</button>{{ object.dislike }}<br>
     <br>
 <a href="{% url "comment-add" pk=object.id %}">Öneriye yorum ekle</a><br>
 <a href="{% url "product-update" pk=object.id %}">Öneri güncelle</a><br>

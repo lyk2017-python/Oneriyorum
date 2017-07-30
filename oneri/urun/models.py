@@ -24,8 +24,8 @@ class Product(models.Model):
     performance = models.SmallIntegerField()
     design = models.SmallIntegerField(default=0)
     created_date = models.DateTimeField(default=timezone.now)
-    #like = models.PositiveIntegerField(default=0)
-    #dislike = models.PositiveIntegerField(default=0)
+    like = models.PositiveIntegerField(default=0)
+    dislike = models.PositiveIntegerField(default=0)
 
 
     # This function return product's name.
