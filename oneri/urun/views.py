@@ -18,6 +18,10 @@ class ProductUpdate(UpdateView):
 class ProductDelete(DeleteView):
     model = Product
     success_url = reverse_lazy('Anasayfa')
+    template_name = 'urun/product_form_delete.html'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 class CommentCreate(CreateView):
     form_class = CommentForm

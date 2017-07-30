@@ -1,0 +1,16 @@
+{% extends "urun/base.html" %}
+
+{% block title %}Öneri silme onayı{% endblock %}
+
+{% block content %}
+
+<form action="{% url "product-delete" %}" method="post">
+
+    {% csrf_token %}
+    <input type="submit" value="DELETE" />
+
+</form>
+
+
+
+{% endblock %}
