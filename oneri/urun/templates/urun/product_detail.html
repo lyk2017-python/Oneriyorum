@@ -5,29 +5,33 @@
 {% block content %}
 
     <h3>{{ object.name }}</h3>
-<img src="{{object.image.url}}" alt="" width="100"><br>
-Tanım: {{ object.description }}<br>
-price :{{ object.price }}
-performance :{{ object.performance }}
-design :{{ object.design }}<br>
-<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
-<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
-    <br><br>
-<a href="{% url "comment-add"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Yorum Ekle</a>
-<a href="{% url "product-update"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Öneriyi Güncelle</a>
-<a href="{% url "product-delete"  object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Sil</a>
-    <hr>
-<h4>Öneri için yazılan yorumlar aşağıdadır.</h4>
-<hr>
-    {% for comment in object.comments.all %}
-        <p>
-            {{comment.content}} <br>
-            {{comment.created_date|date:"m-d-Y"}} <br>
-            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
-            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
-        </p>
+    {% if object.image.url != Null %}
+        <img src="{{object.image.url}}" alt="" width="100"><br>
+    {% else %}
+        Resim Yüklü Değil <br>
+    {% endif %}
+    Tanım: {{ object.description }}<br>
+    price :{{ object.price }}
+    performance :{{ object.performance }}
+    design :{{ object.design }}<br>
+    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
+    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
+        <br><br>
+    <a href="{% url "comment-add"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Yorum Ekle</a>
+    <a href="{% url "product-update"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Öneriyi Güncelle</a>
+    <a href="{% url "product-delete"  object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Sil</a>
         <hr>
-    {% endfor %}
+    <h4>Öneri için yazılan yorumlar aşağıdadır.</h4>
+    <hr>
+        {% for comment in object.comments.all %}
+            <p>
+                {{comment.content}} <br>
+                {{comment.created_date|date:"m-d-Y"}} <br>
+                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
+                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
+            </p>
+            <hr>
+        {% endfor %}
 
 
 {% endblock %}
