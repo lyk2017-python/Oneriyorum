@@ -6,7 +6,9 @@ from django.core.mail import send_mail
 
 from urun.forms import CommentForm, ContactForm
 from urun.models import Product, Vendor, Comment
+import operator
 
+from django.db.models import Q
 
 class VendorCreate(CreateView):
     model = Vendor
@@ -64,6 +66,19 @@ class ContactFormView(generic.FormView):
                 settings.DEFAULT_FROM_EMAIL,
                 ["sahinelif.mail@gmail.com"])
         return super().form_valid(form)
+
+class ProductListSearchView(AnasayfaView):
+    paginate_by = 10
+
+    def get_queryset(self):
+        result = super(AnasayfaView, self).get_queryset()
+
+        query = self.request.GET.get('q')
+        if query:
+
+            result = result.filter(name__icontains=query)
+
+        return result
 
 
 
