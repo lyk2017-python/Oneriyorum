@@ -60,8 +60,7 @@ class ContactFormView(generic.FormView):
         data = form.cleaned_data
         from django.conf import settings
         send_mail("Oneriyorum ContactForm : {}".format(data["title"]),
-                ("Sistemden size gelen bir mesaj var\n"
-                 "---\n{}\n---\neposta: {}\nip: {}").format(data["title"], data["email"], self.request.META["REMOTE_ADDR"]),
+                "Sistemden size gelen bir mesaj var\n---\n{}\n---\neposta: {}\nip: {}".format(data["content"], data["email"], self.request.META["REMOTE_ADDR"]),
                 settings.DEFAULT_FROM_EMAIL,
                 ["sahinelif.mail@gmail.com"])
         return super().form_valid(form)
