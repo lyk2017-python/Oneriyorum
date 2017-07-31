@@ -2,8 +2,9 @@ from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
 
-from urun.forms import CommentForm
+from urun.forms import CommentForm, ContactForm
 from urun.models import Product, Vendor, Comment
 
 
@@ -49,6 +50,21 @@ class SssView(generic.TemplateView):
 
 class ProductDetailView(generic.DetailView):
     model = Product
+
+class ContactFormView(generic.FormView):
+    form_class = ContactForm
+    template_name = "urun/contact.html"
+    success_url = "/"
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        from django.conf import settings
+        send_mail("Oneriyorum ContactForm : {}".format(data["title"]),
+                ("Sistemden size gelen bir mesaj var\n"
+                 "---\n{}\n---\neposta: {}\nip: {}").format(data["title"], data["email"], self.request.META["REMOTE_ADDR"]),
+                settings.DEFAULT_FROM_EMAIL,
+                ["sahinelif.mail@gmail.com"])
+        return super().form_valid(form)
 
 
 
