@@ -12,6 +12,8 @@ class Vendor(models.Model):
     def __str__(self):
         return "{name}".format(name=self.name)
 
+    def get_absolute_url(self):
+        return reverse('Anasayfa')
 
 
 class Product(models.Model):

@@ -6,6 +6,12 @@ from django.urls import reverse_lazy
 from urun.forms import CommentForm
 from urun.models import Product, Vendor, Comment
 
+
+class VendorCreate(CreateView):
+    model = Vendor
+    fields = ['name']
+
+
 class ProductCreate(CreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']

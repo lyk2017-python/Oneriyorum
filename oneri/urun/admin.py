@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 
 from .models import Product, Vendor, Comment
 
-# Admin panelde öneri için yazılmış yorumları gösterir.
+# Admin panelde oneri icin yazilmis yorumlari gosterir.
 class ProductComment(admin.StackedInline):
     model = Comment
     extra = 0
