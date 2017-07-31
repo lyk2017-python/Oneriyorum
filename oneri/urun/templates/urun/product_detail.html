@@ -6,7 +6,7 @@
 
     <h3>{{ object.name }}</h3>
     {% if object.image.url != Null %}
-        <img src="{{object.image.url}}" alt="" width="100"><br>
+        <img src="{{object.image.url}}" alt="" width="100"><br><br>
     {% else %}
         Resim Yüklü Değil <br>
     {% endif %}
@@ -14,9 +14,9 @@
     Fiyat:
     <progress value="{{ object.price }}" max="5"></progress><br>
     Performans:
-    <progress value="{{ object.perfomance }}" max="5"></progress><br>
+    <progress value="{{ object.performance }}" max="5"></progress><br>
     Tasarım :
-    <progress value="{{ object.design }}" max="5"></progress><br>
+    <progress value="{{ object.design }}" max="5"></progress><br><br>
     <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
     <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
         <br><br>
