@@ -13,6 +13,6 @@ urlpatterns=[
     url(r'^product/(?P<pk>\d+)/add/', CommentCreate.as_view(), name='comment-add'),
     url(r'^product/(?P<pk>\d+)/update/$', ProductUpdate.as_view(), name='product-update'),
     url(r'^product/(?P<pk>\d+)/delete/$', ProductDelete.as_view(), name='product-delete'),
-    url(r'^product/search/$', ProductListSearchView.as_view(), name='product-list-search'),
+    url(r'^product/search/', ProductListSearchView.as_view(), name='product-list-search'),
 
 ]
