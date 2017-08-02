@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-from urun.forms import CommentForm, ContactForm, UserForm
+from urun.forms import CommentForm, ContactForm, UserRegisterForm
 from urun.models import Product, Vendor
 
 
@@ -100,8 +100,8 @@ class ProductListSearchView(AnasayfaView):
 
 
 
-class UserView(generic.CreateView):
-    form_class = UserForm
+class UserRegisterView(generic.CreateView):
+    form_class = UserRegisterForm
     template_name = "urun/signup.html"
     success_url = "/"
 

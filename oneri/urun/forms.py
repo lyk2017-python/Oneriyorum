@@ -18,7 +18,7 @@ class ContactForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea)
 
 
-class UserForm(UserCreationForm):
+class UserRegisterForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
