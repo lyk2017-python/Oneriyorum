@@ -55,7 +55,7 @@ ROOT_URLCONF = 'oneri.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,3 +125,4 @@ MEDIA_URL = "/media/"
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "epostalar")
 DEFAULT_FROM_EMAIL = "noreply@oneriyorum.com"
+LOGIN_REDIRECT_URL = "/"

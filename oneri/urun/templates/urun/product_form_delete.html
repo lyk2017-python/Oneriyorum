@@ -4,13 +4,16 @@
 
 {% block content %}
 
-<form action="{% url "product-delete" %}" method="post">
 
-    {% csrf_token %}
-    <input type="submit" value="DELETE" />
+    {% if request.user.is_authenticated %}
 
-</form>
+        <form action="{% url "product-delete" %}" method="post">
 
+            {% csrf_token %}
+            <input type="submit" value="DELETE" />
 
+        </form>
+
+    {% endif %}
 
 {% endblock %}

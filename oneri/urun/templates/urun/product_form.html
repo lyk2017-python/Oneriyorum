@@ -4,13 +4,16 @@
 
 {% block content %}
 
-<form action="" method="post" enctype="multipart/form-data">
 
+
+{% if request.user.is_authenticated %}
+    <hr>
+    <form action="." method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
-
-</form>
+    {{form.as_p}}
+        <button type="submit">Save</button>
+    </form>
+{% endif %}
 
 
 {% endblock %}

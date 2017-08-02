@@ -3,34 +3,51 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from urun.forms import CommentForm, ContactForm
-from urun.models import Product, Vendor, Comment
-import operator
+from urun.models import Product, Vendor
 
-from django.db.models import Q
 
-class VendorCreate(CreateView):
+class LoginCreateView(LoginRequiredMixin, generic.CreateView):
+    pass
+
+
+class LoginUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+class LoginDeleteView(LoginRequiredMixin, generic.DeleteView):
+    pass
+
+
+class VendorCreate(LoginCreateView):
     model = Vendor
     fields = ['name']
 
 
-class ProductCreate(CreateView):
+class ProductCreate(LoginCreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
 
-class ProductUpdate(UpdateView):
+
+class ProductUpdate(LoginUpdateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
     template_name = 'urun/product_form_update.html'
 
-class ProductDelete(DeleteView):
+
+class ProductDelete(LoginDeleteView):
     model = Product
     success_url = reverse_lazy('Anasayfa')
     template_name = 'urun/product_form_delete.html'
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
 
 class CommentCreate(CreateView):
     form_class = CommentForm

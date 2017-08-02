@@ -35,6 +35,19 @@
         {% endblock %}
     </div>
 
+
+    {% if request.user.is_authenticated %}
+    Merhaba {{ request.user.username }}, Çıkış yapmak için
+    <form action="{% url "logout" %}" method="post" >
+    {% csrf_token %}
+    <input type="hidden" value="/" name="next">
+    <button>tıklayın</button>
+    </form>
+{% else %}
+    Giriş yapmak için <a href="{% url "login" %}">tıklayın</a>
+{% endif %}
+
+
     <div id="content">
         {% block content %}{% endblock %}
     </div>
