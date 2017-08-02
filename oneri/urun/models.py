@@ -23,10 +23,9 @@ class Product(models.Model):
     description = models.TextField()
     image = models.ImageField(blank=True, null=True)
 
+    """ Secenekler icin aralık belirleniyor. """
     SCORE_CHOICES = [(int(i), str(i)) for i in range(1, 6)]
-
-
-
+    """ choices ile secenekler ekleniyor """
     price = models.SmallIntegerField(choices=SCORE_CHOICES)
     performance = models.SmallIntegerField(choices=SCORE_CHOICES)
     design = models.SmallIntegerField(choices=SCORE_CHOICES)
