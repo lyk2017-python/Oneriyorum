@@ -22,9 +22,14 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     image = models.ImageField(blank=True, null=True)
-    price = models.SmallIntegerField()
-    performance = models.SmallIntegerField()
-    design = models.SmallIntegerField(default=0)
+
+    SCORE_CHOICES = [(int(i), str(i)) for i in range(1, 6)]
+
+
+
+    price = models.SmallIntegerField(choices=SCORE_CHOICES)
+    performance = models.SmallIntegerField(choices=SCORE_CHOICES)
+    design = models.SmallIntegerField(choices=SCORE_CHOICES)
     created_date = models.DateTimeField(default=timezone.now)
     like = models.PositiveIntegerField(default=0)
     dislike = models.PositiveIntegerField(default=0)
