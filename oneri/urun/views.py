@@ -3,26 +3,34 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from urun.forms import CommentForm, ContactForm
-from urun.models import Product, Vendor, Comment
-import operator
+from urun.models import Product, Vendor
 
-from django.db.models import Q
+
+class LoginCreateView(LoginRequiredMixin, generic.CreateView):
+    pass
+
 
 class VendorCreate(CreateView):
     model = Vendor
     fields = ['name']
 
 
-class ProductCreate(CreateView):
+class ProductCreate(LoginCreateView, CreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
+
 
 class ProductUpdate(UpdateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
     template_name = 'urun/product_form_update.html'
+
 
 class ProductDelete(DeleteView):
     model = Product
