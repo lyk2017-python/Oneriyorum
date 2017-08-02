@@ -16,29 +16,38 @@ class LoginCreateView(LoginRequiredMixin, generic.CreateView):
     pass
 
 
-class VendorCreate(CreateView):
+class LoginUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+class LoginDeleteView(LoginRequiredMixin, generic.DeleteView):
+    pass
+
+
+class VendorCreate(LoginCreateView):
     model = Vendor
     fields = ['name']
 
 
-class ProductCreate(LoginCreateView, CreateView):
+class ProductCreate(LoginCreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
 
 
-class ProductUpdate(UpdateView):
+class ProductUpdate(LoginUpdateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
     template_name = 'urun/product_form_update.html'
 
 
-class ProductDelete(DeleteView):
+class ProductDelete(LoginDeleteView):
     model = Product
     success_url = reverse_lazy('Anasayfa')
     template_name = 'urun/product_form_delete.html'
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
 
 class CommentCreate(CreateView):
     form_class = CommentForm
