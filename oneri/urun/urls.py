@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from urun.views import ProductDetailView, AnasayfaView, SssView, CommentCreate, ContactFormView, ProductListSearchView
-from urun.views import ProductCreate, ProductUpdate, ProductDelete, VendorCreate
+from urun.views import ProductDetailView, AnasayfaView, SssView, CommentCreate, ContactFormView
+from urun.views import ProductCreate, ProductUpdate, ProductDelete, VendorCreate, UserView, ProductListSearchView
 
 urlpatterns=[
     url(r"^$", AnasayfaView.as_view(), name="Anasayfa"),
@@ -14,5 +14,5 @@ urlpatterns=[
     url(r'^product/(?P<pk>\d+)/update/$', ProductUpdate.as_view(), name='product-update'),
     url(r'^product/(?P<pk>\d+)/delete/$', ProductDelete.as_view(), name='product-delete'),
     url(r'^product/search/', ProductListSearchView.as_view(), name='product-list-search'),
-
+    url(r'^register/$', UserView.as_view(), name='register'),
 ]
