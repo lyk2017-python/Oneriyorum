@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'urun',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "epostalar")
 DEFAULT_FROM_EMAIL = "noreply@oneriyorum.com"
 LOGIN_REDIRECT_URL = "/"
+BOOTSTRAP3 = {
+    'css_url': "/static/urun/css/simplex.css",
+}
