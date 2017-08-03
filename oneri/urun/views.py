@@ -2,12 +2,9 @@ from django.db.models import F
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import generic
-from django.views.generic import ListView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -99,7 +96,6 @@ class ProductListSearchView(AnasayfaView):
             result = result.filter(name__icontains=query)
 
         return result
-
 
 
 
