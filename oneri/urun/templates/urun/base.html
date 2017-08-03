@@ -9,8 +9,9 @@
     <title>
         {% block title %}Benim de bir önerim var{% endblock %}
     </title>
-     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-     <script src="{% static "urun/js/main.js" %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{% static " urun
+    /js/main.js" %}"></script>
 </head>
 
 <body>
@@ -18,12 +19,6 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-<!--          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button> -->
           <a class="navbar-brand" href="/">Öneriyorum</a>
         </div>
 
@@ -33,29 +28,27 @@
             <li><a href="/vendor/add/">Tedarikçi Ekle</a></li>
             <li><a href="/product/add/">Öneri Ekle</a></li>
             <li><a href="/contact/">İletişim</a></li>
-  <form class="navbar-form navbar-left" action="{% url 'product-list-search' %}" method="get" accept-charset="utf-8" role="search">
-            <div class="form-group">
-                  <i class="fa fa-search"></i>
-      <input class="searchfield form-control" id="searchbox" name="q" type="text" placeholder="Öneri Ara!">
+            <form class="navbar-form navbar-left" action="{% url 'product-list-search' %}" method="get" accept-charset="utf-8" role="search">
+                <div class="form-group">
+                    <i class="fa fa-search"></i>
+                    <input class="searchfield form-control" id="searchbox" name="q" type="text" placeholder="Öneri Ara!">
+                </div>
+                <button type="submit" class="btn btn-default">Ara</button>
+            </form>
 
-            </div>
-            <button type="submit" class="btn btn-default">Ara</button>
-          </form>
-
-<li>
+            <li>
              {% if request.user.is_authenticated %}
-       Merhaba {{ request.user.username }}
-        <form action="{% url "logout" %}" method="post" >
-            {% csrf_token %}
-            <input type="hidden" value="/" name="next"><button class="btn btn-xs btn-default">Çıkış</button>
+                Merhaba {{ request.user.username }}
+                <form action="{% url "logout" %}" method="post" >
+                {% csrf_token %}
+                <input type="hidden" value="/" name="next"><button class="btn btn-xs btn-default">Çıkış</button>
 
-        </form></li>
-
-    {% else %}
-        <li> <a href="{% url "login" %}">Giriş</a></li>
-              <li><a href="{% url "register" %}">Kayıt Ol</a></li>
-    {% endif %}
- </ul>
+                </form></li>
+             {% else %}
+                <li> <a href="{% url "login" %}">Giriş</a></li>
+                <li><a href="{% url "register" %}">Kayıt Ol</a></li>
+             {% endif %}
+            </ul>
         </div>
       </div>
     </nav>
@@ -66,6 +59,6 @@
         {% block content %}{% endblock %}
     </div>
         {% bootstrap_javascript jquery=1 %}
-<script src="{% static "urun/js/main.js" %}"></script>
+    <script src="{% static "urun/js/main.js" %}"></script>
 </body>
 </html>
