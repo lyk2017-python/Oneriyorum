@@ -11,12 +11,17 @@
         Resim Yüklü Değil <br>
     {% endif %}
     Tanım: {{ object.description }}<br>
-    Fiyat:
-    <progress value="{{ object.price }}" max="5"></progress><br>
-    Performans:
-    <progress value="{{ object.performance }}" max="5"></progress><br>
-    Tasarım :
-    <progress value="{{ object.design }}" max="5"></progress><br><br>
+
+    <div class="progress">
+      <div class="progress-bar progress-bar-info" style="width: {% widthratio object.price 1 20 %}%">Fiyat</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" style="width: {% widthratio object.performance 1 20 %}%">Performans</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-warning" style="width: {% widthratio object.design 1 20 %}%">Tasarım</div>
+    </div>
+    <br>
     <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
     <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
         <br><br>
