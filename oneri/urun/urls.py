@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
-from urun.views import ProductDetailView, AnasayfaView, SssView, CommentCreate, ContactFormView, UserRegisterView
+from urun.views import ProductDetailView, AnasayfaView, SssView, CommentCreate, ContactFormView, UserRegisterView, like, \
+    dislike
 from urun.views import ProductCreate, ProductUpdate, ProductDelete, VendorCreate, ProductListSearchView
 
 urlpatterns=[
@@ -15,4 +16,6 @@ urlpatterns=[
     url(r'^product/(?P<pk>\d+)/delete/$', ProductDelete.as_view(), name='product-delete'),
     url(r'^product/search/', ProductListSearchView.as_view(), name='product-list-search'),
     url(r'^register/$', UserRegisterView.as_view(), name='register'),
+    url(r"^api/like$", like, name="like_dislike"),
+    url(r"^api/dislike$", dislike, name="dislike"),
 ]
