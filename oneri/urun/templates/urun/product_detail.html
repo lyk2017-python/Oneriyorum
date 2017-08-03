@@ -11,7 +11,11 @@
     {% else %}
         Resim Yüklü Değil <br>
     {% endif %}
-    Tanım: {{ object.description }}<br>
+
+    Ürün açıklaması:
+    <div class="well">
+      {{ object.description }}
+    </div>
 
     <div class="progress">
       <div class="progress-bar progress-bar-info" style="width: {% widthratio object.price 1 20 %}%">Fiyat</div>
