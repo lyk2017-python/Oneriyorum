@@ -1,6 +1,7 @@
 {% extends "urun/base.html" %}
+{% load bootstrap3 %}
 
-{% block title %}Login Sayfası{% endblock %}
+{% block title %}Kullanıcı Girişi Sayfası{% endblock %}
 
 {% block content %}
 
@@ -8,7 +9,7 @@
 <form action="." method="POST">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}">
-    {{ form.as_p }}
+    {% bootstrap_form form %}
     <button type="submit">Login</button>
 </form>
 
