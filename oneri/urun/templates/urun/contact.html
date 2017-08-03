@@ -4,7 +4,7 @@
 {% block content %}
     <form action="." method="POST">
         {% csrf_token %}
-        {{form.as_p}}
-    <button type="submit">Kaydet</button>
+        {% bootstrap_form form %}
+    <button type="submit" class="btn btn-default btn-lg">Kaydet</button>
     </form>
 {% endblock %}
