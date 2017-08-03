@@ -29,8 +29,8 @@
     </div>
     <br>
 
-    <a class="btn btn-default" onclick="like(true, {{ object.id }})" id="like_{{object.id}}"> {{ object.like }}</a>
-    <a class="btn btn-default" onclick="dislike(true, {{ object.id }})" id="dislike_{{object.id}}"> {{ object.dislike }}</a>
+    Like:<a class="btn btn-success" onclick="like(true, {{ object.id }})" id="like_{{object.id}}"> {{ object.like }}</a>
+    Dislike:<a class="btn btn-danger" onclick="dislike(true, {{ object.id }})" id="dislike_{{object.id}}"> {{ object.dislike }}</a>
 
 
         <br><br>
@@ -46,8 +46,8 @@
                     {{comment.content}} <br>
                     {{comment.created_date|date:"m-d-Y"}}
                 </div>
-                <a class="btn btn-default" onclick="comment_like(true, {{ comment.id }})" id="like_{{comment.id}}"> {{ comment.like }}</a>
-                <a class="btn btn-default" onclick="comment_dislike(true, {{ comment.id }})" id="dislike_{{comment.id}}"> {{ comment.dislike }}</a>
+                Like:<a class="btn btn-success" onclick="comment_like(true, {{ comment.id }})" id="like_{{comment.id}}"> {{ comment.like }}</a>
+                Dislike:<a class="btn btn-danger" onclick="comment_dislike(true, {{ comment.id }})" id="dislike_{{comment.id}}"> {{ comment.dislike }}</a>
             </p>
             <hr>
         {% endfor %}
