@@ -18,12 +18,12 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<!--          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+          </button> -->
           <a class="navbar-brand" href="/">Öneriyorum</a>
         </div>
 
@@ -33,30 +33,32 @@
             <li><a href="/vendor/add/">Tedarikçi Ekle</a></li>
             <li><a href="/product/add/">Öneri Ekle</a></li>
             <li><a href="/contact/">İletişim</a></li>
-
-          </ul>
-          <form class="navbar-form navbar-right" role="search">
+  <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Öneri Ara">
             </div>
             <button type="submit" class="btn btn-default">Ara</button>
           </form>
 
+<li>
+             {% if request.user.is_authenticated %}
+       Merhaba {{ request.user.username }}
+        <form action="{% url "logout" %}" method="post" >
+            {% csrf_token %}
+            <input type="hidden" value="/" name="next"><button class="btn btn-xs btn-default">Çıkış</button>
+
+        </form></li>
+
+    {% else %}
+        <li> <a href="{% url "login" %}">Giriş</a></li>
+              <li><a href="{% url "register" %}">Kayıt Ol</a></li>
+    {% endif %}
+ </ul>
         </div>
       </div>
     </nav>
 
-    {% if request.user.is_authenticated %}
-        Merhaba {{ request.user.username }}, Çıkış yapmak için
-        <form action="{% url "logout" %}" method="post" >
-            {% csrf_token %}
-            <input type="hidden" value="/" name="next">
-            <button>tıklayın</button>
-        </form>
-    {% else %}
-        Giriş yapmak için <a href="{% url "login" %}">tıklayın</a>
-        Kayıt olmak için <a href="{% url "register" %}">Register</a>
-    {% endif %}
+
 
 
     <div class="row">

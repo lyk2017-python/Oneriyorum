@@ -1,4 +1,5 @@
 {% extends "urun/base.html" %}
+{% load bootstrap3 %}
 
 {% block title %}Ürün detay sayfası{% endblock %}
 
@@ -10,6 +11,7 @@
     {% else %}
         Resim Yüklü Değil <br>
     {% endif %}
+<<<<<<< HEAD
     Tanım: {{ object.description }}<br>
     Fiyat:
     <progress value="{{ object.price }}" max="5"></progress><br>
@@ -19,6 +21,26 @@
     <progress value="{{ object.design }}" max="5"></progress><br><br>
     <a href="#" class="btn btn-default" onclick="like(true, {{ object.id }})" id="like_{{object.id}}"><span class="glyphicon glyphicon-thumbs-up" ></span> {{ object.like }}</a>
     <a href="#"  class="btn btn-default" onclick="dislike(true, {{ object.id }})" id="dislike_{{object.id}}"><span class="glyphicon glyphicon-thumbs-down" ></span> {{ object.dislike }}</a>
+=======
+
+    Ürün açıklaması:
+    <div class="well well-lg">
+      {{ object.description }}
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.price 1 20 %}%">Fiyat</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.performance 1 20 %}%">Performans</div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.design 1 20 %}%">Tasarım</div>
+    </div>
+    <br>
+    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
+    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
+>>>>>>> be3180e1a9b23fde00ef2be90ba2d2caf3cd6005
         <br><br>
     <a href="{% url "comment-add"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Yorum Ekle</a>
     <a href="{% url "product-update"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Öneriyi Güncelle</a>
@@ -28,8 +50,10 @@
     <hr>
         {% for comment in object.comments.all %}
             <p>
-                {{comment.content}} <br>
-                {{comment.created_date|date:"m-d-Y"}} <br>
+                <div class="well well-sm">
+                    {{comment.content}} <br>
+                    {{comment.created_date|date:"m-d-Y"}}
+                </div>
                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
             </p>
