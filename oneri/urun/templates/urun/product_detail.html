@@ -10,16 +10,7 @@
         <img src="{{object.image.url}}" alt="" width="100"><br><br>
     {% else %}
         Resim Yüklü Değil <br>
-
-    Tanım: {{ object.description }}<br>
-    Fiyat:
-    <progress value="{{ object.price }}" max="5"></progress><br>
-    Performans:
-    <progress value="{{ object.performance }}" max="5"></progress><br>
-    Tasarım :
-    <progress value="{{ object.design }}" max="5"></progress><br><br>
-    <a href="#"  class="btn btn-default" onclick="like(true, {{ object.id }})" id="like_{{object.id}}"><span class="glyphicon glyphicon-thumbs-up" ></span> {{ object.like }}</a>
-    <a href="#"  class="btn btn-default" onclick="dislike(true, {{ object.id }})" id="dislike_{{object.id}}"><span class="glyphicon glyphicon-thumbs-down" ></span> {{ object.dislike }}</a>
+    {% endif %}
 
 
     Ürün açıklaması:
@@ -55,8 +46,8 @@
                     {{comment.content}} <br>
                     {{comment.created_date|date:"m-d-Y"}}
                 </div>
-                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
-                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
+                <a class="btn btn-default" onclick="comment_like(true, {{ comment.id }})" id="like_{{comment.id}}"> {{ comment.like }}</a>
+                <a class="btn btn-default" onclick="comment_dislike(true, {{ comment.id }})" id="dislike_{{comment.id}}"> {{ comment.dislike }}</a>
             </p>
             <hr>
         {% endfor %}
@@ -77,10 +68,39 @@
             "json"
         )
     }
-
         function dislike(param, id) {
         $.post(
             "{% url "dislike" %}",
+            {
+                "dislike": param,
+                "id": id,
+                "csrfmiddlewaretoken": getCookie('csrftoken')
+            },
+            function (data) {
+                $("#dislike_" + data.id).text(data.dislike)
+            },
+            "json"
+        )
+    }
+
+            function comment_like(param, id) {
+        $.post(
+            "{% url "comment_like" %}",
+            {
+                "like": param,
+                "id": id,
+                "csrfmiddlewaretoken": getCookie('csrftoken')
+            },
+            function (data) {
+                $("#like_" + data.id).text(data.like)
+            },
+            "json"
+        )
+    }
+
+            function comment_dislike(param, id) {
+        $.post(
+            "{% url "comment_dislike" %}",
             {
                 "dislike": param,
                 "id": id,

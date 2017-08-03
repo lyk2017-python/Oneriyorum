@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from urun.views import ProductDetailView, AnasayfaView, SssView, CommentCreate, ContactFormView, UserRegisterView, like, \
-    dislike
+    dislike, comment_like, comment_dislike
 from urun.views import ProductCreate, ProductUpdate, ProductDelete, VendorCreate, ProductListSearchView
 
 urlpatterns=[
@@ -18,4 +18,6 @@ urlpatterns=[
     url(r'^register/$', UserRegisterView.as_view(), name='register'),
     url(r"^api/like$", like, name="like_dislike"),
     url(r"^api/dislike$", dislike, name="dislike"),
+    url(r"^api/comment_like$", comment_like, name="comment_like"),
+    url(r"^api/comment_dislike$", comment_dislike, name="comment_dislike"),
 ]

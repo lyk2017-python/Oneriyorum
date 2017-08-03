@@ -120,9 +120,6 @@ def like(request):
     if like == "true":
         obj.like = F("like") + 1
         obj.save(update_fields=["like"])
-    elif like == "false":
-        obj.like = F("like") - 1
-        obj.save(update_fields=["like"])
     else:
         return HttpResponse(status=400)
     obj.refresh_from_db()
@@ -134,9 +131,6 @@ def dislike(request):
     obj = get_object_or_404(Product, id=int(id))
     if dislike == "true":
         obj.dislike = F("dislike") + 1
-        obj.save(update_fields=["dislike"])
-    elif dislike == "false":
-        obj.dislike = F("dislike") - 1
         obj.save(update_fields=["dislike"])
     else:
         return HttpResponse(status=400)
@@ -150,9 +144,6 @@ def comment_like(request):
     if like == "true":
         obj.like = F("like") + 1
         obj.save(update_fields=["like"])
-    elif like == "false":
-        obj.like = F("like") - 1
-        obj.save(update_fields=["like"])
     else:
         return HttpResponse(status=400)
     obj.refresh_from_db()
@@ -164,9 +155,6 @@ def comment_dislike(request):
     obj = get_object_or_404(Comment, id=int(id))
     if dislike == "true":
         obj.dislike = F("dislike") + 1
-        obj.save(update_fields=["dislike"])
-    elif dislike == "false":
-        obj.dislike = F("dislike") - 1
         obj.save(update_fields=["dislike"])
     else:
         return HttpResponse(status=400)
