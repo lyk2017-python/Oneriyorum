@@ -19,13 +19,13 @@
     </div>
 
     <div class="progress">
-      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.price 1 20 %}%">Fiyat</div>
+      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.price 1 20 %}">Fiyat</div>
     </div>
     <div class="progress">
-      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.performance 1 20 %}%">Performans</div>
+      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.performance 1 20 %}">Performans</div>
     </div>
     <div class="progress">
-      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.design 1 20 %}%">Tasarım</div>
+      <div class="progress-bar progress-bar-default" style="width: {% widthratio object.design 1 20 %}">Tasarım</div>
     </div>
     <br>
 
@@ -36,7 +36,7 @@
         <br><br>
     <a href="{% url "comment-add"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Yorum Ekle</a>
     <a href="{% url "product-update"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Öneriyi Güncelle</a>
-    <a href="{% url "product-delete"  object.id %}" class="btn btn-default">Sil</a>
+    <a href="{% url "product-delete"  object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Sil</a>
         <hr>
     <h4>Öneri için yazılan yorumlar aşağıdadır.</h4>
     <hr>
