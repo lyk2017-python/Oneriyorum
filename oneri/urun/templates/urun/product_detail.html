@@ -13,7 +13,7 @@
     {% endif %}
 
     Ürün açıklaması:
-    <div class="well">
+    <div class="well well-lg">
       {{ object.description }}
     </div>
 
@@ -38,8 +38,10 @@
     <hr>
         {% for comment in object.comments.all %}
             <p>
-                {{comment.content}} <br>
-                {{comment.created_date|date:"m-d-Y"}} <br>
+                <div class="well well-sm">
+                    {{comment.content}} <br>
+                    {{comment.created_date|date:"m-d-Y"}}
+                </div>
                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
             </p>
