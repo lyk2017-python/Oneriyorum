@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from urun.forms import CommentForm, ContactForm, UserRegisterForm
-from urun.models import Product, Vendor
+from urun.models import Product, Vendor, Comment
 
 
 class LoginCreateView(LoginRequiredMixin, generic.CreateView):
@@ -132,6 +132,36 @@ def dislike(request):
     id = request.POST.get("id", default=None)
     dislike = request.POST.get("dislike")
     obj = get_object_or_404(Product, id=int(id))
+    if dislike == "true":
+        obj.dislike = F("dislike") + 1
+        obj.save(update_fields=["dislike"])
+    elif dislike == "false":
+        obj.dislike = F("dislike") - 1
+        obj.save(update_fields=["dislike"])
+    else:
+        return HttpResponse(status=400)
+    obj.refresh_from_db()
+    return JsonResponse({"dislike": obj.dislike, "id": id})
+
+def comment_like(request):
+    id = request.POST.get("id", default=None)
+    like = request.POST.get("like")
+    obj = get_object_or_404(Comment, id=int(id))
+    if like == "true":
+        obj.like = F("like") + 1
+        obj.save(update_fields=["like"])
+    elif like == "false":
+        obj.like = F("like") - 1
+        obj.save(update_fields=["like"])
+    else:
+        return HttpResponse(status=400)
+    obj.refresh_from_db()
+    return JsonResponse({"like": obj.like, "id": id})
+
+def comment_dislike(request):
+    id = request.POST.get("id", default=None)
+    dislike = request.POST.get("dislike")
+    obj = get_object_or_404(Comment, id=int(id))
     if dislike == "true":
         obj.dislike = F("dislike") + 1
         obj.save(update_fields=["dislike"])
