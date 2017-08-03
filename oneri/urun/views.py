@@ -1,3 +1,6 @@
+from django.db.models import F
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -108,3 +111,34 @@ class UserRegisterView(generic.CreateView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+def like(request):
+    id = request.POST.get("id", default=None)
+    like = request.POST.get("like")
+    obj = get_object_or_404(Product, id=int(id))
+    if like == "true":
+        obj.like = F("like") + 1
+        obj.save(update_fields=["like"])
+    elif like == "false":
+        obj.like = F("like") - 1
+        obj.save(update_fields=["like"])
+    else:
+        return HttpResponse(status=400)
+    obj.refresh_from_db()
+    return JsonResponse({"like": obj.like, "id": id})
+
+def dislike(request):
+    id = request.POST.get("id", default=None)
+    dislike = request.POST.get("dislike")
+    obj = get_object_or_404(Product, id=int(id))
+    if dislike == "true":
+        obj.dislike = F("dislike") + 1
+        obj.save(update_fields=["dislike"])
+    elif dislike == "false":
+        obj.dislike = F("dislike") - 1
+        obj.save(update_fields=["dislike"])
+    else:
+        return HttpResponse(status=400)
+    obj.refresh_from_db()
+    return JsonResponse({"dislike": obj.dislike, "id": id})

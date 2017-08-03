@@ -17,8 +17,8 @@
     <progress value="{{ object.performance }}" max="5"></progress><br>
     Tasarım :
     <progress value="{{ object.design }}" max="5"></progress><br><br>
-    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{ object.like }}</a>
-    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{ object.dislike }}</a>
+    <a href="#" class="btn btn-default" onclick="like(true, {{ object.id }})" id="like_{{object.id}}"><span class="glyphicon glyphicon-thumbs-up" ></span> {{ object.like }}</a>
+    <a href="#"  class="btn btn-default" onclick="dislike(true, {{ object.id }})" id="dislike_{{object.id}}"><span class="glyphicon glyphicon-thumbs-down" ></span> {{ object.dislike }}</a>
         <br><br>
     <a href="{% url "comment-add"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Yorum Ekle</a>
     <a href="{% url "product-update"  pk=object.id %}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Öneriyi Güncelle</a>
@@ -35,6 +35,39 @@
             </p>
             <hr>
         {% endfor %}
+
+
+<script>
+    function like(param, id) {
+        $.post(
+            "{% url "like_dislike" %}",
+            {
+                "like": param,
+                "id": id,
+                "csrfmiddlewaretoken": getCookie('csrftoken')
+            },
+            function (data) {
+                $("#like_" + data.id).text(data.like)
+            },
+            "json"
+        )
+    }
+
+        function dislike(param, id) {
+        $.post(
+            "{% url "dislike" %}",
+            {
+                "dislike": param,
+                "id": id,
+                "csrfmiddlewaretoken": getCookie('csrftoken')
+            },
+            function (data) {
+                $("#dislike_" + data.id).text(data.dislike)
+            },
+            "json"
+        )
+    }
+</script>
 
 
 {% endblock %}
