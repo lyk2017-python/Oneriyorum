@@ -42,17 +42,11 @@
     <hr>
         {% for comment in object.comments.all %}
             <p>
-<<<<<<< HEAD
-                {{comment.content}} <br>
-                {{comment.created_date|date:"m-d-Y"}} <br>
-                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span> {{comment.like}}</a>
-=======
                 <div class="well well-sm">
                     {{comment.content}} <br>
                     {{comment.created_date|date:"m-d-Y"}}
                 </div>
                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span> {{comment.like}}</a>
->>>>>>> e926bd6fa47de7daa70810e75a69cb8d16fbad63
                 <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-down"></span> {{comment.dislike}}</a>
             </p>
             <hr>
