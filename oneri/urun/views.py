@@ -54,11 +54,19 @@ class CommentCreate(CreateView):
     form_class = CommentForm
     template_name = "urun/comment_form.html"
 
+    """ Yorum yapilcak urunun pk'sina ulasabilmek icin kullanilan fonksiyon """
     def get_form_kwargs(self):
+        """ Form verilerini kaybetmemek icin super kullaniyoruz."""
         form_veri = super().get_form_kwargs()
         if self.request.method in ["POST", "PUT"]:
+
+            """ Data kullanici_veri'ye kopyalaniyor """
             kullanici_veri = form_veri["data"].copy()
+
+            """Kullanici_veriye ppk ekleniyor"""
             kullanici_veri["product"] = self.kwargs["pk"]
+
+            """Form_veriye geri aktariliyor."""
             form_veri["data"] = kullanici_veri
         return form_veri
 
