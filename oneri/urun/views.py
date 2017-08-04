@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from urun.forms import CommentForm, ContactForm, UserRegisterForm
 from urun.models import Product, Vendor, Comment
 
-
+""" Giris yapmadan kullanilamayacak viewlar """
 class LoginCreateView(LoginRequiredMixin, generic.CreateView):
     pass
 
@@ -23,23 +23,23 @@ class LoginUpdateView(LoginRequiredMixin, generic.UpdateView):
 class LoginDeleteView(LoginRequiredMixin, generic.DeleteView):
     pass
 
-
+""" Tedarikci olusturma """
 class VendorCreate(LoginCreateView):
     model = Vendor
     fields = ['name']
 
-
+""" Oneri olusturma """
 class ProductCreate(LoginCreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
 
-
+""" Oneri guncelleme """
 class ProductUpdate(LoginUpdateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
     template_name = 'urun/product_form_update.html'
 
-
+""" Oneri silme """
 class ProductDelete(LoginDeleteView):
     model = Product
     success_url = reverse_lazy('Anasayfa')
@@ -49,7 +49,7 @@ class ProductDelete(LoginDeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
-
+""" Oneriye yorum ekleme """
 class CommentCreate(CreateView):
     form_class = CommentForm
     template_name = "urun/comment_form.html"
@@ -63,22 +63,25 @@ class CommentCreate(CreateView):
             """ Data kullanici_veri'ye kopyalaniyor """
             kullanici_veri = form_veri["data"].copy()
 
-            """Kullanici_veriye ppk ekleniyor"""
+            """Kullanici_veriye pk ekleniyor"""
             kullanici_veri["product"] = self.kwargs["pk"]
 
             """Form_veriye geri aktariliyor."""
             form_veri["data"] = kullanici_veri
         return form_veri
 
-
+""" Oneriler anasayfada listelenir. """
 class AnasayfaView(generic.ListView):
     model = Product
-    ordering = ['-pk']
+    ordering = ['-pk'] # Oneriler son eklenenden basa dogru siralanir.
 
 
+""" Oneri detaylari """
 class ProductDetailView(generic.DetailView):
     model = Product
 
+
+""" Iletisim formu """
 class ContactFormView(generic.FormView):
     form_class = ContactForm
     template_name = "urun/contact.html"
@@ -93,6 +96,8 @@ class ContactFormView(generic.FormView):
                 ["info@oneriyorum.com"])
         return super().form_valid(form)
 
+
+""" Oneri arama """
 class ProductListSearchView(AnasayfaView):
     paginate_by = 10
 
@@ -107,7 +112,7 @@ class ProductListSearchView(AnasayfaView):
         return result
 
 
-
+""" Kullanici girisi """
 class UserRegisterView(generic.CreateView):
     form_class = UserRegisterForm
     template_name = "urun/signup.html"
@@ -117,7 +122,7 @@ class UserRegisterView(generic.CreateView):
         form.save()
         return super().form_valid(form)
 
-
+""" Like- dislike viewleri """
 def like(request):
     id = request.POST.get("id", default=None)
     like = request.POST.get("like")
