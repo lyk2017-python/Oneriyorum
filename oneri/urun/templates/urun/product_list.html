@@ -10,7 +10,7 @@
     <div class="list-group">
         {% for product in object_list %}
             {% if product.image.url != Null %}
-              <a href="{% url "product-detail" pk=product.pk %}" class="list-group-item"> <img src="{{product.image.url}}" alt="" width="40"> {{product.name}}  {{product.created_date | date:"d-m-Y" }}</a>
+              <a href="{% url "product-detail" pk=product.pk %}" class="list-group-item"> <img src="{{product.image.url}}" alt="" width="40"> {{product.name}} {{product.created_date | date:"d-m-Y" }}</a>
             {% else %}
                 <a href="{% url "product-detail" pk=product.pk %}" class="list-group-item"> {{product.name}}  {{product.created_date | date:"d-m-Y" }}</a>
             {% endif %}
