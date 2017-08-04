@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from urun.forms import CommentForm, ContactForm, UserRegisterForm
 from urun.models import Product, Vendor, Comment
 
+
 """ Giris yapmadan kullanilamayacak viewlar """
 class LoginCreateView(LoginRequiredMixin, generic.CreateView):
     pass
@@ -23,21 +24,25 @@ class LoginUpdateView(LoginRequiredMixin, generic.UpdateView):
 class LoginDeleteView(LoginRequiredMixin, generic.DeleteView):
     pass
 
+
 """ Tedarikci olusturma """
 class VendorCreate(LoginCreateView):
     model = Vendor
     fields = ['name']
+
 
 """ Oneri olusturma """
 class ProductCreate(LoginCreateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
 
+
 """ Oneri guncelleme """
 class ProductUpdate(LoginUpdateView):
     model = Product
     fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
     template_name = 'urun/product_form_update.html'
+
 
 """ Oneri silme """
 class ProductDelete(LoginDeleteView):
@@ -48,6 +53,7 @@ class ProductDelete(LoginDeleteView):
     """Ilgili product pk'sina erisim icin get komutu """
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
 
 """ Oneriye yorum ekleme """
 class CommentCreate(CreateView):
@@ -70,6 +76,7 @@ class CommentCreate(CreateView):
             form_veri["data"] = kullanici_veri
         return form_veri
 
+
 """ Oneriler anasayfada listelenir. """
 class AnasayfaView(generic.ListView):
     model = Product
@@ -91,9 +98,9 @@ class ContactFormView(generic.FormView):
         data = form.cleaned_data
         from django.conf import settings
         send_mail("Oneriyorum ContactForm : {}".format(data["title"]),
-                "Sistemden size gelen bir mesaj var\n---\n{}\n---\neposta: {}\nip: {}".format(data["content"], data["email"], self.request.META["REMOTE_ADDR"]),
-                settings.DEFAULT_FROM_EMAIL,
-                ["info@oneriyorum.com"])
+            "Sistemden size gelen bir mesaj var\n---\n{}\n---\neposta: {}\nip: {}".format(data["content"],
+            data["email"], self.request.META["REMOTE_ADDR"]),
+            settings.DEFAULT_FROM_EMAIL, ["info@oneriyorum.com"])
         return super().form_valid(form)
 
 
@@ -122,6 +129,7 @@ class UserRegisterView(generic.CreateView):
         form.save()
         return super().form_valid(form)
 
+
 """ Like- dislike viewleri """
 def like(request):
     id = request.POST.get("id", default=None)
@@ -135,6 +143,7 @@ def like(request):
     obj.refresh_from_db()
     return JsonResponse({"like": obj.like, "id": id})
 
+
 def dislike(request):
     id = request.POST.get("id", default=None)
     dislike = request.POST.get("dislike")
@@ -147,6 +156,7 @@ def dislike(request):
     obj.refresh_from_db()
     return JsonResponse({"dislike": obj.dislike, "id": id})
 
+
 def comment_like(request):
     id = request.POST.get("id", default=None)
     like = request.POST.get("like")
@@ -158,6 +168,7 @@ def comment_like(request):
         return HttpResponse(status=400)
     obj.refresh_from_db()
     return JsonResponse({"like": obj.like, "id": id})
+
 
 def comment_dislike(request):
     id = request.POST.get("id", default=None)
