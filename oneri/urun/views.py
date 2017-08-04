@@ -65,6 +65,7 @@ class CommentCreate(CreateView):
 
 class AnasayfaView(generic.ListView):
     model = Product
+    ordering = ['-pk']
 
 
 class ProductDetailView(generic.DetailView):
