@@ -45,6 +45,7 @@ class ProductDelete(LoginDeleteView):
     success_url = reverse_lazy('Anasayfa')
     template_name = 'urun/product_form_delete.html'
 
+    """Ilgili product pk'sina erisim icin get komutu """
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
@@ -52,6 +53,7 @@ class ProductDelete(LoginDeleteView):
 class CommentCreate(CreateView):
     form_class = CommentForm
     template_name = "urun/comment_form.html"
+
     def get_form_kwargs(self):
         form_veri = super().get_form_kwargs()
         if self.request.method in ["POST", "PUT"]:
@@ -64,8 +66,6 @@ class CommentCreate(CreateView):
 class AnasayfaView(generic.ListView):
     model = Product
 
-class SssView(generic.TemplateView):
-    template_name = "urun/sss.html"
 
 class ProductDetailView(generic.DetailView):
     model = Product
@@ -81,7 +81,7 @@ class ContactFormView(generic.FormView):
         send_mail("Oneriyorum ContactForm : {}".format(data["title"]),
                 "Sistemden size gelen bir mesaj var\n---\n{}\n---\neposta: {}\nip: {}".format(data["content"], data["email"], self.request.META["REMOTE_ADDR"]),
                 settings.DEFAULT_FROM_EMAIL,
-                ["sahinelif.mail@gmail.com"])
+                ["info@oneriyorum.com"])
         return super().form_valid(form)
 
 class ProductListSearchView(AnasayfaView):

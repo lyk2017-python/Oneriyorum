@@ -1,12 +1,11 @@
 from django.conf.urls import url
 
-from urun.views import ProductDetailView, AnasayfaView, SssView, CommentCreate, ContactFormView, UserRegisterView, like, \
+from urun.views import ProductDetailView, AnasayfaView, CommentCreate, ContactFormView, UserRegisterView, like, \
     dislike, comment_like, comment_dislike
 from urun.views import ProductCreate, ProductUpdate, ProductDelete, VendorCreate, ProductListSearchView
 
 urlpatterns=[
     url(r"^$", AnasayfaView.as_view(), name="Anasayfa"),
-    url(r"^sss$", SssView.as_view()),
     url(r'^vendor/add/$', VendorCreate.as_view(), name='vendor-add'),
     url(r'^product/add/$', ProductCreate.as_view(), name='product-add'),
     url(r'^contact/$', ContactFormView.as_view(), name='contact'),
