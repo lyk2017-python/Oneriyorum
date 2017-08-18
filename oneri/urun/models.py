@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Vendor(models.Model):
     """
@@ -32,6 +33,7 @@ class Product(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     like = models.PositiveIntegerField(default=0)
     dislike = models.PositiveIntegerField(default=0)
+    created_by = models.ForeignKey(User)   #Product ekleyen User
 
 
     # This function return product's name.

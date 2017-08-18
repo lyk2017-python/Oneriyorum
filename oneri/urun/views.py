@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-from urun.forms import CommentForm, ContactForm, UserRegisterForm
+from urun.forms import CommentForm, ContactForm, UserRegisterForm, ProductForm
 from urun.models import Product, Vendor, Comment
 
 
@@ -31,12 +31,6 @@ class VendorCreate(LoginCreateView):
     fields = ['name']
 
 
-""" Oneri olusturma """
-class ProductCreate(LoginCreateView):
-    model = Product
-    fields = ['vendor', 'name', 'description', 'image', 'price', 'performance', 'design']
-
-
 """ Oneri guncelleme """
 class ProductUpdate(LoginUpdateView):
     model = Product
@@ -53,6 +47,29 @@ class ProductDelete(LoginDeleteView):
     """Ilgili product pk'sina erisim icin get komutu """
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+""" Oneri olusturma """
+class ProductCreate(LoginCreateView):
+    form_class = ProductForm
+    template_name = "urun/product_form.html"
+
+    """ Kayıtlı kullanıcıyı form verisine eklemek icin kullanilan fonksiyon """
+    def get_form_kwargs(self):
+        """ Form verilerini kaybetmemek icin super kullaniyoruz."""
+        form_veri = super().get_form_kwargs()
+        if self.request.method in ["POST", "PUT"]:
+
+            """ Data kullanici_veri'ye kopyalaniyor """
+            kullanici_veri = form_veri["data"].copy()
+
+            """Kullanici_veriye pk ekleniyor"""
+            kullanici_veri["created_by"] = self.request.user.id  # User'a ulaşmak için kullandık.
+
+            """Form_veriye geri aktariliyor."""
+            form_veri["data"] = kullanici_veri
+        return form_veri
+
 
 
 """ Oneriye yorum ekleme """

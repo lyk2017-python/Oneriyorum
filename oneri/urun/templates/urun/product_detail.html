@@ -27,7 +27,10 @@
     <div class="progress">
       <div class="progress-bar progress-bar-default" style="width: {% widthratio object.design 1 20 %}%">Tasarım: %{% widthratio object.design 1 20 %}</div>
     </div>
-    <br>
+
+    {% if object.created_by %}
+        <p align="right">Yazar: @{{ object.created_by }}</p>
+    {% endif%}
 
     Like:<a class="btn btn-success" onclick="like(true, {{ object.id }})" id="like_{{object.id}}"> {{ object.like }}</a>
     Dislike:<a class="btn btn-danger" onclick="dislike(true, {{ object.id }})" id="dislike_{{object.id}}"> {{ object.dislike }}</a>
